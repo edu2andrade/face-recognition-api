@@ -42,4 +42,5 @@ app.put('/image', (req, res) => { image.handleImage(req, res, db) }) // dependen
 
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) }) 
 
-app.listen(process.env.PORT || 3000, () => { console.log(`Server is running on ${process.env.PORT}`) })
+const PORT = process.env.PORT;
+app.listen(PORT || 3000, () => { console.log(`Server is running on ${PORT}`) })
