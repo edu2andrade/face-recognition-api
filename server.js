@@ -43,9 +43,9 @@ app.put('/image', (req, res) => { image.handleImage(req, res, db) }) // dependen
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) }) 
 
 // listening the right port...
-let PORT = process.env.PORT;
-if (PORT == null || PORT == "") {
-  PORT = 3000;
-}
-app.listen(PORT);
-// app.listen(PORT || 3000, () => { console.log(`Server is running on ${PORT}`) })
+// let PORT = process.env.PORT;
+// if (PORT == null || PORT == "") {
+//   PORT = 3000;
+// }
+// app.listen(PORT);
+app.listen(process.env.PORT || 3000, () => { console.log(`Server is running on ${process.env.PORT}`) })
