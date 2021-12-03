@@ -11,11 +11,19 @@ const image = require('./controllers/image');
 const db = knex({
   client: 'pg',
   connection: {
-    host : '127.0.0.1', // Localhost --> 127.0.0.1 / heroku --> postgresql-encircled-84512
-    port : 5432,
-    user : 'postgres', // pgadmi --> postgres
-    password : 'test',
-    database : 'face-recognition'
+
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+
+    // host : '127.0.0.1', // Localhost --> 127.0.0.1 / heroku --> postgresql-encircled-84512
+    // port : 5432,
+    // user : 'postgres', // pgadmi --> postgres
+    // password : 'test',
+    // database : 'face-recognition'
+
+
   }
 });
 
@@ -39,13 +47,13 @@ app.get('/profile/:id', (req, res) => { profile.handleProfile(req, res, db) }) /
 
 // /image --> PUT --> user
 app.put('/image', (req, res) => { image.handleImage(req, res, db) }) // dependency injection (db)
-
-app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) }) 
+app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) }) // calls another function inside image.js
 
 // listening the right port...
+app.listen(process.env.PORT || 3000, () => { console.log(`Server is running on ${process.env.PORT}`) })
+// This will work too:
 // let PORT = process.env.PORT;
 // if (PORT == null || PORT == "") {
 //   PORT = 3000;
 // }
 // app.listen(PORT);
-app.listen(process.env.PORT || 3000, () => { console.log(`Server is running on ${process.env.PORT}`) })
