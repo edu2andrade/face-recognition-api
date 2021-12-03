@@ -11,9 +11,9 @@ const image = require('./controllers/image');
 const db = knex({
   client: 'pg',
   connection: {
-    host : 'postgresql-encircled-84512', // Localhost 127.0.0.1
-    // port : 5432,
-    user : 'edu2andrade', // postgres
+    host : '127.0.0.1', // Localhost --> 127.0.0.1 / heroku --> postgresql-encircled-84512
+    port : 5432,
+    user : 'postgres', // pgadmi --> postgres
     password : 'test',
     database : 'face-recognition'
   }
